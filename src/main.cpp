@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+ // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "alert.h"
 #include "checkpoints.h"
@@ -1092,8 +1092,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 1 * 24 * 60 * 60; // PandoraCoin: 1 day
-static const int64 nTargetSpacing = 2 * 60; // PandoraCoin: 2.5 minutes
+static const int64 nTargetTimespan = 6*60; // PandoraCoin: every 2 block
+static const int64 nTargetSpacing = 2 * 60; // PandoraCoin: 2 minutes
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2785,7 +2785,7 @@ bool InitBlockIndex() {
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("042A9D370C2FDCD218FFA27869766C9C8666F9E1060410A79BB02D37D84BF39DCC6527A62EBB80FF1EAC579EC264E20461CF1F27E3AB3DD9763E4E32F796BF0A2B") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
